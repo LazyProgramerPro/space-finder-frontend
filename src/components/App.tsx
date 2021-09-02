@@ -7,6 +7,8 @@ import { Navbar } from "./Navbar";
 import { Home } from "./Home";
 import { Login } from "./Login";
 import { Profile } from "./Profile";
+import { Spaces } from "./spaces/Spaces";
+import { DataService } from "../services/DataService";
 
 //{},{} ===>props,state
 
@@ -27,6 +29,7 @@ export class App extends React.Component<{}, AppState> {
   //Khoi tao cac service can thiet
 
   private authService: AuthService = new AuthService();
+  private dataService: DataService = new DataService();
 
   private setUser(user: User) {
     this.setState({
@@ -47,6 +50,9 @@ export class App extends React.Component<{}, AppState> {
             </Route>
             <Route exact path='/profile'>
               <Profile authService={this.authService} user={this.state.user} />
+            </Route>
+            <Route exact path='/spaces'>
+              <Spaces dataService={this.dataService} />
             </Route>
           </Switch>
         </Router>
